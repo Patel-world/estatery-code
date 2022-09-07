@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useRef,useEffect} from 'react'
 
 const Select = ({defaultValue, location}) => {
     const [isHover, setIsHover] = useState('');
@@ -6,6 +6,17 @@ const Select = ({defaultValue, location}) => {
     const [loc, setLoc]=useState('')
     const [city,setC]=useState(defaultValue)
     var locat=[...location]
+
+    const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return; // 👈️ return early if first render
+    }
+
+    setToggle(false)
+  }, [city]); 
 
    const handleMouseEnter = (event) => {
     var v=event.target.getAttribute('value')
@@ -37,6 +48,15 @@ const Select = ({defaultValue, location}) => {
         setToggle(true)
     }
    }
+   const handleT = () =>{
+
+    if(toggle){
+        setToggle(false)
+    }
+    else{
+        setToggle(false)
+    }
+   }
   const handleChange = (event) => {
     var value=event.target.getAttribute('value')
     setC(value)
@@ -45,9 +65,9 @@ const Select = ({defaultValue, location}) => {
   };
   return (
     <div>
-        <a href="#" onClick={handleToggle}><div id={defaultValue.split(" ")[0]} contentEditable suppressContentEditableWarning={true} onInput={filter}>{city}</div></a><div></div>
+        <a onClick={handleToggle}><div id={defaultValue.split(" ")[0]} contentEditable suppressContentEditableWarning={true} onInput={filter}>{city}</div></a><div></div>
           
-          <div className="select-h" style={{visibility: toggle?'visible':'collapse'}}>
+          <div className="select-h" style={{visibility: toggle?'visible':'collapse'}} onMouseLeave={handleT}>
           {location.filter(e=>(e.toLowerCase().indexOf(loc.toLowerCase())!=-1)).map((option, index) => (
            <div className="value" style={{backgroundColor: isHover==option ? '#7066e8' : '#eae7f9', color: isHover==option ? '#ffff' : '#7066e8'}}
            onMouseEnter={handleMouseEnter}

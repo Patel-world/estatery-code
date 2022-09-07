@@ -8,7 +8,7 @@ const Search = () => {
   return (
     <div className='search-span'>
         <div className='flend'>
-            <Select defaultValue="Search with search Bar" location={property}/><IoIosArrowDropdownCircle/>
+            <Select defaultValue="Search with search Bar" location={property}/><IoIosArrowDropdownCircle id='qsd'/>
         </div>
     </div>
   )

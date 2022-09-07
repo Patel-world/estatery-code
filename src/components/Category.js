@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef,useEffect } from "react";
 
 import location from "../data/Location";
 import Select from "../Views.js/Select";
@@ -24,14 +24,25 @@ const Category = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(9);
 
-    let footer = <p>Please pick a day.</p>;
+    const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return; // 👈️ return early if first render
+    }
+
+    setToggle(false)
+  }, [selected]); 
+   
     if (selected) {
         //console.log(format(selected, 'PP'))
         //console.log(selected)
         document.querySelector("#dt").textContent = format(selected, 'PP')
+        
 
 
-        footer = <p>You picked {format(selected, 'PP')}.</p>;
+        
     }
 
  
@@ -43,8 +54,17 @@ const Category = () => {
         else {
             setToggle(true)
         }
+        console.log(toggle)
     }
-
+    const handleD = () => {
+        if (toggle) {
+            setToggle(false)
+        }
+        else {
+            setToggle(false)
+        }
+        console.log(toggle)
+    }
 
 
     const handleSearch = () => {
@@ -80,12 +100,13 @@ const Category = () => {
 
                     </div>
                     <div className="qwer">
-                        <a href="#" onClick={handleDate}><div className="flend"><div id="dt">Select Move-In Date</div><BsCalendarDate /></div></a>
+                        <a onClick={handleDate}><div className="flend"><div id="dt">Select Move-In Date</div><BsCalendarDate id='qsd' /></div></a>
                         <DayPicker
                             mode="single"
                             selected={selected}
                             onSelect={setSelected}
                             style={{ visibility: toggle ? "visible" : "collapse" }}
+                     
                         />
                     </div>
                     <div className="qwer">
@@ -95,7 +116,7 @@ const Category = () => {
                         <Select defaultValue='Houses' location={property} />
                     </div>
                     <div className="qw">
-                        <a href="#" onClick={handleSearch}><div className="search">Search</div></a>
+                        <a onClick={handleSearch}><div className="search">Search</div></a>
                     </div>
 
                 </div>

@@ -85,8 +85,16 @@ dl, ol, ul {
   padding: 0.5em 1em;
   /* width: 3rem; */
 }
-
+svg#qsd {
+  fill: rgb(112 102 232);
+}
+svg#logo {
+  font-size: 24px;
+  fill: rgb(112 102 232);
+  margin-block-start: 16px;
+}
 svg#small {
+  fill: rgb(112 102 232);
   margin: 0;
 }
 .fl {

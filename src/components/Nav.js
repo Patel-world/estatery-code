@@ -31,7 +31,7 @@ const Nav = () => {
         <a href="#" onClick={handleToggle}><div id="qwr" className='nav-button bold disp'><RiHomeSmile2Fill id="logo"/>Estatery</div></a>
         <div id="qw" className="flex hidden g2">
         <div className="inline">
-          <a href="#" onClick={handleToggle}><div className='nav-button bold'><RiHomeSmile2Fill id="logo"/>Estatery</div></a>
+          <a href="#" onClick={handleToggle}><div className='nav-button bold'><RiHomeSmile2Fill id="logo"/><h3>Estatery</h3></div></a>
           <a href='#'><div className="nav-button active">Rent</div></a>
           <a href='#'><div className='nav-button'>Buy</div></a>
           <a href='#'><div className='nav-button'>Sell</div></a>
